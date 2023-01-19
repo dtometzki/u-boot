@@ -1,4 +1,4 @@
-´´´
+```
 make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- -j8
 cd ../Tools/spl_tool/
 ./create_sbl /home/admin/u-boot/spl/u-boot-spl.bin 0x01010101
@@ -10,5 +10,5 @@ cp /home/admin/opensbi/build/platform/generic/firmware/fw_payload.bin ./
 cp visionfive2_fw_payload.img /home/admin/kernel_deb/
 cd ../spl_tool/
 cp u-boot-spl.bin.normal.out ~/kernel_deb/
-´´´
+```
 
