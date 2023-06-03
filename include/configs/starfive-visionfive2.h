@@ -162,11 +162,11 @@
 		"fi; "                                                  \
 	"fi; \0"							\
 	"load_distro_uenv="						\
-	"fatload ${bootdev} ${devnum}:3 ${distroloadaddr} /${bootenv}; " \
+	"load ${bootdev} ${devnum}:3 ${distroloadaddr} /${bootenv}; " \
 	"setenv fatbootpart ${devnum}:3; " \
 	"env import ${distroloadaddr} 200; \0" \
 	"fdt_loaddtb="	\
-	"fatload ${bootdev} ${fatbootpart} ${fdt_addr_r} /dtbs/${fdtfile}; fdt addr ${fdt_addr_r}; \0" \
+	"load ${bootdev} ${fatbootpart} ${fdt_addr_r} /dtbs/${fdtfile}; fdt addr ${fdt_addr_r}; \0" \
 	"fdt_sizecheck="	\
 	"fatsize ${bootdev} ${fatbootpart} /dtbs/${fdtfile}; \0"	\
 	"set_fdt_distro="	\
@@ -186,7 +186,7 @@
                 "fatwrite ${bootdev} ${fatbootpart} ${fdt_addr_r} /dtbs/${fdtfile} ${filesize};" \
 	"fi; \0"	\
 	"bootcmd_distro=" 	\
-	"run fdt_loaddtb; run fdt_sizecheck; run set_fdt_distro; sysboot ${bootdev} ${fatbootpart} fat c0000000 /${boot_syslinux_conf}; \0"	\
+	"run fdt_loaddtb; run fdt_sizecheck; run set_fdt_distro; sysboot ${bootdev} ${fatbootpart} any c0000000 /${boot_syslinux_conf}; \0"	\
 
 #define PARTS_DEFAULT							\
 	"name=loader1,start=17K,size=1M,type=${type_guid_gpt_loader1};" \
@@ -241,8 +241,8 @@
 	"bootdir=/boot\0"		\
 	"mmcpart=3\0"			\
 	"loadaddr=0xa0000000\0"		\
-	"load_vf2_env=fatload mmc ${bootpart} ${loadaddr} ${testenv}\0"	\
-	"loadbootenv=fatload mmc ${bootpart} ${loadaddr} ${bootenv}\0"	\
+	"load_vf2_env=load mmc ${bootpart} ${loadaddr} ${testenv}\0"	\
+	"loadbootenv=load mmc ${bootpart} ${loadaddr} ${bootenv}\0"	\
 	"ext4bootenv="			\
 		"ext4load mmc ${bootpart} ${loadaddr} ${bootdir}/${bootenv}\0"\
 	"importbootenv="		\
